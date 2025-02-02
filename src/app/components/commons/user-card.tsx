@@ -13,6 +13,7 @@ import { Button } from "../ui/button";
 
 interface UserCardProps {
   onOpenAddSocialMedia: () => void;
+  onOpenAddPersonalLink: () => void;
   socialMedias?: SocialMedias;
   isHome?: boolean;
   isOwner?: boolean;
@@ -20,6 +21,7 @@ interface UserCardProps {
 
 export function UserProfileCard({
   onOpenAddSocialMedia,
+  onOpenAddPersonalLink,
   isHome,
   isOwner,
   socialMedias,
@@ -102,7 +104,10 @@ export function UserProfileCard({
         <div className="w-full flex flex-col items-center gap-3">
           <Button className="w-full">Template Saas - Compre Agora</Button>
 
-          <button className="p-3 rounded-xl bg-[#1e1e1e] hover:bg-[#2e2e2e]">
+          <button
+            className="p-3 rounded-xl bg-[#1e1e1e] hover:bg-[#2e2e2e]"
+            onClick={onOpenAddPersonalLink}
+          >
             <Plus />
           </button>
         </div>

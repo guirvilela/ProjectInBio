@@ -34,6 +34,9 @@ export function UserCard({ socialMedias, isHome, isOwner }: UserCardProps) {
     <>
       <UserProfileCard
         onOpenAddSocialMedia={() => form.set("modalSocialMedia")(true)}
+        onOpenAddPersonalLink={() =>
+          formPersonalLink.set("modalPersonalLink")(true)
+        }
         socialMedias={socialMedias}
         isHome={isHome}
         isOwner={isOwner}
