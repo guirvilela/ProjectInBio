@@ -1,11 +1,16 @@
 import { Rocket } from "lucide-react";
+import { Metadata } from "next";
 import { Header } from "../../components/lading-page/header";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
+import { CreateLinkForm } from "../../components/pages/criar-page/create-link-form";
+
+export const metadata: Metadata = {
+  title: "Criar",
+};
 
 export default function CriarPagina() {
   return (
-    <div>
+    <>
+      <title>ProjectInBio | Criar link</title>
       <Header />
 
       <div className="h-screen flex flex-col gap-10 items-center justify-center max-w-xl mx-auto">
@@ -15,16 +20,8 @@ export default function CriarPagina() {
           <Rocket className="size-10" />
         </div>
 
-        <form action="" className="w-full flex  items-center gap-2">
-          <span className="text-white">projectinbio.com/</span>
-          <Input />
-          <Button className="w-[126px]">Criar link</Button>
-        </form>
-
-        <div>
-          <span className="text-accent-pink">Erro de exemplo</span>
-        </div>
+        <CreateLinkForm />
       </div>
-    </div>
+    </>
   );
 }

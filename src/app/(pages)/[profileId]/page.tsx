@@ -1,15 +1,19 @@
-import { Plus } from "lucide-react";
 import Link from "next/link";
 import { ProjectCard } from "../../components/commons/project-card";
 import { TotalVisits } from "../../components/commons/total-visits";
-import { UserCard } from "../../components/commons/user-card";
+import { NewProject } from "../../components/pages/profileId-page/new-project";
+import { UserCard } from "../../components/pages/profileId-page/user-card";
+import { useProjects } from "../../hooks/projects";
+import { getDownloadURL } from "../../lib/firebase";
 
-interface ProfilePageProps {
+export interface ProfilePageProps {
   params: Promise<{ profileId: string }>;
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const { profileId } = await params;
+  const { projectsAction, isOwner, profileId, profileData } = await useProjects(
+    { params }
+  );
 
   return (
     <div className="relative h-screen flex p-20 overflow-hidden">
@@ -24,33 +28,19 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       </div>
 
       <div className="w-1/2 flex justify-center h-min">
-        <UserCard />
+        <UserCard isOwner={isOwner} socialMedias={profileData.socialMedias} />
       </div>
 
       <div className="w-full flex justify-center content-start gap-4 flex-wrap overflow-y-auto">
-        <ProjectCard
-          image={"/project1.jpg"}
-          qtdCliks={2}
-          projectName={"Projeto1"}
-          description={"Descrição"}
-        />
-        <ProjectCard
-          image={"/project1.jpg"}
-          qtdCliks={2}
-          projectName={"Projeto1"}
-          description={"Descrição"}
-        />
-        <ProjectCard
-          image={"/project1.jpg"}
-          qtdCliks={2}
-          projectName={"Projeto1"}
-          description={"Descrição"}
-        />
+        {projectsAction.map(async (project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            image={await getDownloadURL(project.imagePath)}
+          />
+        ))}
 
-        <button className="w-[340px] h-[132px] rounded-[20px] bg-background-secondary flex items-center gap-2 justify-center hover:border border-dashed border-border-secondary ">
-          <Plus className="size-10 text-accent-green" />
-          <span>Novo projeto</span>
-        </button>
+        {isOwner && <NewProject profileId={profileId} />}
       </div>
 
       <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">

@@ -1,6 +1,6 @@
 import { ProjectCard } from "../commons/project-card";
 import { TotalVisits } from "../commons/total-visits";
-import { UserCard } from "../commons/user-card";
+import { UserCard } from "../pages/profileId-page/user-card";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
@@ -30,7 +30,7 @@ export function Hero() {
 
       <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_55%)]">
         <div className="relative">
-          <UserCard />
+          <UserCard isHome />
 
           <div className="absolute bottom-2 -right-[45%]">
             <TotalVisits />
@@ -38,19 +38,35 @@ export function Hero() {
 
           <div className="absolute top-[20%] -left-[45%] -z-10">
             <ProjectCard
-              projectName="Pizzaria online"
-              description="Este é um projeto de uma aplicação web para gerenciamento e pedidos de uma pizzaria, desenvolvido com React no frontend. A interface é moderna, intuitiva e responsiva, permitindo que os usuários explorem o cardápio, personalizem pizzas, realizem pedidos e acompanhem o status em tempo real."
-              image="/project1.jpg"
-              qtdCliks={240}
+              project={{
+                id: "project1",
+                projectName: "Pizzaria online",
+                projectDescription:
+                  "Este é um projeto de uma aplicação web para gerenciamento e pedidos de uma pizzaria, desenvolvido com React no frontend. A interface é moderna, intuitiva e responsiva, permitindo que os usuários explorem o cardápio, personalizem pizzas, realizem pedidos e acompanhem o status em tempo real.",
+                imagePath: "/project1.jpg",
+                projectUrl: "http://",
+                userId: "teste",
+                totalVisits: 1,
+                createdAt: 123,
+              }}
+              image=""
             />
           </div>
 
           <div className="absolute -top-[5%] -left-[55%] -z-10">
             <ProjectCard
-              projectName="ERP Empresarial"
-              description="O projeto ERP Empresarial é uma aplicação desenvolvida com ReactJS e Next.js, voltada para a gestão integrada de processos empresariais."
-              image="/project2.jpg"
-              qtdCliks={110}
+              project={{
+                id: "project1",
+                projectName: "Pizzaria online",
+                projectDescription:
+                  "Este é um projeto de uma aplicação web para gerenciamento e pedidos de uma pizzaria, desenvolvido com React no frontend. A interface é moderna, intuitiva e responsiva, permitindo que os usuários explorem o cardápio, personalizem pizzas, realizem pedidos e acompanhem o status em tempo real.",
+                imagePath: "/project1.jpg",
+                projectUrl: "http://",
+                userId: "teste",
+                totalVisits: 1,
+                createdAt: 123,
+              }}
+              image=""
             />
           </div>
         </div>
