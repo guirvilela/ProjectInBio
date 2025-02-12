@@ -1,4 +1,5 @@
 import "server-only";
+import { PersonalLinks } from "../hooks/personal-link";
 import { db } from "../lib/firebase";
 
 export interface SocialMedias {
@@ -14,6 +15,10 @@ export interface ProfileData {
   totalVisits: number;
   createdAt: number;
   socialMedias?: SocialMedias;
+  links: PersonalLinks[];
+  name?: string;
+  imagePath: string;
+  description: string;
 }
 
 export interface ProjectsData {
