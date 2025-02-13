@@ -87,7 +87,13 @@ export function ModalAddPersonalLink({
           >
             Voltar
           </Button>
-          <Button onClick={onSavePersonalLink}>
+          <Button
+            onClick={onSavePersonalLink}
+            disabled={
+              form.value.links.length === 0 ||
+              form.value.links.some((link) => !link.title || !link.link)
+            }
+          >
             {form.value.loading ? (
               <Loader2 className="animate-spin" />
             ) : (

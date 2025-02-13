@@ -59,7 +59,7 @@ export function UserProfileCard({
     <div className="w-[348px] flex flex-col gap-5 items-center p-5 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
       <div className="size-48">
         <img
-          src={userPhoto}
+          src={userPhoto ?? "https://www.github.com/guirvilela.png"}
           alt="Gui"
           className="rounded-full object-cover w-full h-full"
         />
@@ -68,7 +68,7 @@ export function UserProfileCard({
       <div className="flex flex-col gap-2 w-full">
         <div className="flex items-center gap-2">
           <h3 className="text-3xl font-bold min-w-0 overflow-hidden">
-            {profileData?.name || "Seu nome"}
+            {profileData?.name || "Guilherme Vilela"}
           </h3>
           {isOwner && (
             <Button variant="ghost" onClick={onOpenEditUserCard}>
@@ -77,12 +77,12 @@ export function UserProfileCard({
           )}
         </div>
         <p className="opacity-40">
-          {profileData?.description || "Um pouco sobre você"}
+          {profileData?.description || "Eu faço produtos para internet"}
         </p>
       </div>
 
       <div className="flex flex-col gap-2 w-full">
-        {socialMediasFormatted.length ? (
+        {socialMediasFormatted.length || isHome ? (
           <span className="uppercase text-xs font-medium">Links</span>
         ) : (
           <></>
@@ -126,8 +126,11 @@ export function UserProfileCard({
             </Link>
           ))}
         </div>
-        {isOwner && (
-          <Button variant="secondary" onClick={onOpenAddPersonalLink}>
+        {(isOwner || isHome) && (
+          <Button
+            variant="secondary"
+            onClick={() => !isHome && onOpenAddPersonalLink}
+          >
             <div className="flex gap-2 items-center justify-center">
               <Plus />
               <p className="text-white font-semibold">
