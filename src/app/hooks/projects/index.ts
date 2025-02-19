@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ProfilePageProps } from "../../(pages)/[profileId]/page";
+import { increaseProfileVisits } from "../../actions/increase-profile-visits";
 import { auth } from "../../lib/auth";
 import {
   getProfileData,
@@ -17,6 +18,8 @@ export async function useProjects({ params }: ProfilePageProps) {
   const isOwner = profileData.userId === session?.user?.id;
 
   const projectsAction = await getProfileProjects(profileId);
+
+  if (!isOwner) await increaseProfileVisits(profileId);
 
   return {
     projectsAction,

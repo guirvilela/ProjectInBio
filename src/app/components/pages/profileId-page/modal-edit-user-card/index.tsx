@@ -59,8 +59,8 @@ export function ModalEditUserCard({
                 className="text-white flex items-center gap-2"
                 onClick={() => triggerImageInput("profile-pic-input")}
               >
-                <ArrowUpFromLine />
-                <span>Adicionar foto</span>
+                <ArrowUpFromLine className="size-4" />
+                <span className="text-sm">Adicionar foto</span>
               </Button>
 
               <Input

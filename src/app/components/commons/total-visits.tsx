@@ -1,13 +1,21 @@
-import { TrendingUp } from "lucide-react";
+import { MoveRight, TrendingUp } from "lucide-react";
 
-export function TotalVisits() {
+interface TotalVisitsProps {
+  visits: number;
+}
+
+export function TotalVisits({ visits = 0 }: TotalVisitsProps) {
   return (
     <div className="w-min whitespace-nowrap flex items-center gap-5 bg-background-secondary border border-border-primary px-8 py-3 rounded-xl shadow-lg">
       <span className="font-bold text-white ">Total de visitas</span>
 
-      <div className="flex items-center gap-2 text-accent-green">
-        <span className="text-3xl font-bold">150</span>
-        <TrendingUp />
+      <div
+        className={`flex items-center gap-2 ${
+          visits == 0 ? "text-gray-400" : "text-accent-green"
+        } `}
+      >
+        <span className="text-3xl font-bold">{visits}</span>
+        {visits == 0 ? <MoveRight /> : <TrendingUp />}
       </div>
 
       {/* <div className="flex items-center gap-2">

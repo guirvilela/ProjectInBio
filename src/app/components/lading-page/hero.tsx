@@ -19,7 +19,7 @@ export function Hero() {
         </h2>
 
         <div className="flex items-center gap-2 w-full mt-[10vh]">
-          <span className="text-white text-xl">projectinbio.com</span>
+          <span className="text-white text-xl">projectinbio.com/</span>
 
           <Input type="text" placeholder="Seu link" />
 
@@ -33,30 +33,32 @@ export function Hero() {
           <UserCard isHome />
 
           <div className="absolute bottom-2 -right-[45%]">
-            <TotalVisits />
+            <TotalVisits visits={1042} />
           </div>
 
           <div className="absolute top-[20%] -left-[45%] -z-10">
             <ProjectCard
               project={{
                 id: "project1",
-                projectName: "Pizzaria online",
+                projectName: "Spotify Clone",
                 projectDescription:
-                  "Este é um projeto de uma aplicação web para gerenciamento e pedidos de uma pizzaria, desenvolvido com React no frontend. A interface é moderna, intuitiva e responsiva, permitindo que os usuários explorem o cardápio, personalizem pizzas, realizem pedidos e acompanhem o status em tempo real.",
+                  "Este é um projeto de uma aplicação web clonando o spotify.",
                 imagePath: "/project1.jpg",
                 projectUrl: "http://",
                 userId: "teste",
                 totalVisits: 1,
                 createdAt: 123,
+                clicks: 45,
               }}
-              image=""
+              image="/project1.jpg"
+              isHome
             />
           </div>
 
           <div className="absolute -top-[5%] -left-[55%] -z-10">
             <ProjectCard
               project={{
-                id: "project1",
+                id: "project2",
                 projectName: "Pizzaria online",
                 projectDescription:
                   "Este é um projeto de uma aplicação web para gerenciamento e pedidos de uma pizzaria, desenvolvido com React no frontend. A interface é moderna, intuitiva e responsiva, permitindo que os usuários explorem o cardápio, personalizem pizzas, realizem pedidos e acompanhem o status em tempo real.",
@@ -65,8 +67,10 @@ export function Hero() {
                 userId: "teste",
                 totalVisits: 1,
                 createdAt: 123,
+                clicks: 32,
               }}
-              image=""
+              isHome
+              image="/project2.jpg"
             />
           </div>
         </div>

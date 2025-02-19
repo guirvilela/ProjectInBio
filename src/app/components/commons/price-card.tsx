@@ -1,11 +1,21 @@
+"use client";
+
+import { Loader2 } from "lucide-react";
 import { Button } from "../ui/button";
 
 interface PriceCardProps {
   recommended?: boolean;
+  isLoadingPlan: boolean;
   onSigning: (type: string) => void;
 }
 
-export function PriceCard({ recommended, onSigning }: PriceCardProps) {
+export function PriceCard({
+  recommended,
+  isLoadingPlan,
+  onSigning,
+}: PriceCardProps) {
+  console.log("teste", isLoadingPlan);
+
   return (
     <>
       {recommended ? (
@@ -26,7 +36,16 @@ export function PriceCard({ recommended, onSigning }: PriceCardProps) {
                   R$ 99,90
                 </span>
               </div>
-              <Button onClick={() => onSigning("lifetime")}>Assinar</Button>
+              <Button
+                onClick={() => onSigning("lifetime")}
+                disabled={isLoadingPlan}
+              >
+                {isLoadingPlan ? (
+                  <Loader2 className="animate-spin" />
+                ) : (
+                  "Assinar"
+                )}
+              </Button>
             </div>
           </div>
         </div>
@@ -43,8 +62,12 @@ export function PriceCard({ recommended, onSigning }: PriceCardProps) {
               <span className="text-content-headline text-2xl">/mês</span>
             </div>
 
-            <Button variant="secondary" onClick={() => onSigning("month")}>
-              Assinar
+            <Button
+              variant="secondary"
+              onClick={() => onSigning("month")}
+              disabled={isLoadingPlan}
+            >
+              {isLoadingPlan ? <Loader2 className="animate-spin" /> : "Assinar"}
             </Button>
           </div>
         </div>

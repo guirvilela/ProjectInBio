@@ -47,15 +47,18 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             key={project.id}
             project={project}
             image={await getDownloadURL(project.imagePath)}
+            isOwner={isOwner}
           />
         ))}
 
         {isOwner && <NewProject profileId={profileId} />}
       </div>
 
-      <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
-        <TotalVisits />
-      </div>
+      {isOwner && (
+        <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
+          <TotalVisits visits={profileData.totalVisits} />
+        </div>
+      )}
     </div>
   );
 }
