@@ -14,8 +14,6 @@ export function PriceCard({
   isLoadingPlan,
   onSigning,
 }: PriceCardProps) {
-  console.log("teste", isLoadingPlan);
-
   return (
     <>
       {recommended ? (

@@ -8,8 +8,6 @@ export function UpgradePricing() {
   const { formStripe, createStripeCheckout } = useStripe();
   const { profileId } = useParams();
 
-  console.log(formStripe.value.loadingPlan === "permanent");
-
   return (
     <div className="flex gap-4">
       <PriceCard

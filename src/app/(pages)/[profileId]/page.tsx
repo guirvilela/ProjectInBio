@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { ProjectCard } from "../../components/commons/project-card";
 import { TotalVisits } from "../../components/commons/total-visits";
 import { NewProject } from "../../components/pages/profileId-page/new-project";
@@ -11,25 +12,32 @@ export interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const { projectsAction, isOwner, profileId, profileData } = await useProjects(
-    { params }
-  );
+  const { session, projectsAction, isOwner, profileId, profileData } =
+    await useProjects({ params });
 
   const userPhotoUrl = profileData.imagePath
     ? await getDownloadURL(profileData.imagePath)
     : null;
 
+  if (isOwner && !session?.user.isSubscribed && !session?.user.isTrial) {
+    redirect(`/${profileId}/upgrade`);
+  }
+
+  console.log(session?.user);
+
   return (
     <div className="relative h-screen flex p-20 overflow-hidden">
-      <div className="fixed top-0 left-0 w-full flex justify-center items-center gap-1 py-2 bg-background-tertiary">
-        <span>Você está usando a versão trial.</span>
+      {session?.user.isTrial && !session.user.isSubscribed && (
+        <div className="fixed top-0 left-0 w-full flex justify-center items-center gap-1 py-2 bg-background-tertiary">
+          <span>Você está usando a versão trial.</span>
 
-        <Link href={`${profileId}/upgrade`}>
-          <button className="text-accent-green font-bold">
-            Faça o upgrade agora
-          </button>
-        </Link>
-      </div>
+          <Link href={`${profileId}/upgrade`}>
+            <button className="text-accent-green font-bold">
+              Faça o upgrade agora
+            </button>
+          </Link>
+        </div>
+      )}
 
       <div className="w-1/2 flex justify-center h-min">
         <UserCard

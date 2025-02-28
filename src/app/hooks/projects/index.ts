@@ -22,6 +22,7 @@ export async function useProjects({ params }: ProfilePageProps) {
   if (!isOwner) await increaseProfileVisits(profileId);
 
   return {
+    session,
     projectsAction,
     profileData,
     isOwner,

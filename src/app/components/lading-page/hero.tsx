@@ -1,8 +1,7 @@
 import { ProjectCard } from "../commons/project-card";
 import { TotalVisits } from "../commons/total-visits";
 import { UserCard } from "../pages/profileId-page/user-card";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { LinkHero } from "./link-hero";
 
 export function Hero() {
   return (
@@ -18,14 +17,7 @@ export function Hero() {
           Acompanhe o engajamento com Analytics de cliques
         </h2>
 
-        <div className="flex items-center gap-2 w-full mt-[10vh]">
-          <span className="text-white text-xl">projectinbio.com/</span>
-
-          <Input type="text" placeholder="Seu link" />
-
-          <Button>Criar Agora</Button>
-          {/* <CreateNow/> */}
-        </div>
+        <LinkHero />
       </div>
 
       <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_55%)]">
@@ -33,7 +25,7 @@ export function Hero() {
           <UserCard isHome />
 
           <div className="absolute bottom-2 -right-[45%]">
-            <TotalVisits visits={1042} />
+            <TotalVisits visits={1042} isHome />
           </div>
 
           <div className="absolute top-[20%] -left-[45%] -z-10">

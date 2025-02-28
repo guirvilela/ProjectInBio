@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import React from "react";
 import { createLink } from "../../actions/create-link";
 import { verifyLink } from "../../actions/verifyLink";
 import { sanitizeLink } from "../../lib/utilts";
@@ -18,6 +19,7 @@ export function useCreateLink() {
   });
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -41,6 +43,12 @@ export function useCreateLink() {
   function handleLinkChange(link: string) {
     return form.set("link")(sanitizeLink(link));
   }
+
+  React.useEffect(() => {
+    if (searchParams.get("link")) {
+      form.set("link")(sanitizeLink(String(searchParams.get("link"))));
+    }
+  }, [searchParams]);
 
   return {
     form,

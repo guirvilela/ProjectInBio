@@ -120,8 +120,13 @@ export function UserProfileCard({
       </div>
       <div className="flex flex-col gap-3 w-full min-h-[172px]">
         <div className="w-full flex flex-col items-center gap-3">
-          {profileData?.links.map((personalLink) => (
-            <Link href={personalLink.link} target="_blank" className="w-full">
+          {profileData?.links?.map((personalLink, i) => (
+            <Link
+              key={`${personalLink.link}-${i}`}
+              href={personalLink.link}
+              target="_blank"
+              className="w-full"
+            >
               <Button className="w-full">{personalLink.title}</Button>
             </Link>
           ))}
