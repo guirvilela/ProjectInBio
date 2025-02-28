@@ -3,7 +3,7 @@ import { db } from "@/src/app/lib/firebase";
 import stripe from "@/src/app/lib/stripe";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   const session = await auth();
   const userId = session?.user.id;
 

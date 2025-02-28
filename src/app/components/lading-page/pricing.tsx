@@ -1,9 +1,21 @@
 "use client";
 
+import React from "react";
+import { manageAuth } from "../../actions/manage-auth";
 import { TRIAL_DAYS } from "../../lib/config";
 import { PriceCard } from "../commons/price-card";
 
 export function Pricing() {
+  const [loadingPrice, setLoadingPrice] = React.useState("");
+
+  function handleSignPlan(planChoice: string) {
+    setLoadingPrice(planChoice);
+
+    manageAuth().then(() => {
+      setLoadingPrice("");
+    });
+  }
+
   return (
     <div className="my-[150px] flex flex-col items-center gap-14">
       <div className="flex flex-col items-center gap-6">
@@ -19,8 +31,15 @@ export function Pricing() {
       </div>
 
       <div className="flex items-end gap-9">
-        <PriceCard onSigning={() => console.log()} />
-        <PriceCard onSigning={() => console.log()} recommended />
+        <PriceCard
+          onSigning={() => handleSignPlan("monthly")}
+          isLoadingPlan={loadingPrice === "monthly"}
+        />
+        <PriceCard
+          onSigning={() => handleSignPlan("ever")}
+          recommended
+          isLoadingPlan={loadingPrice === "ever"}
+        />
       </div>
     </div>
   );
